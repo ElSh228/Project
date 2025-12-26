@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Стихи в цифре | Электронный поэтический сборник</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="mobile.css" media="(max-width: 768px)">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Фавикон можно добавить по желанию -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📖</text></svg>">
+</head>
+<body>
+    <!-- Шапка с видео -->
+    <header class="header">
+        <!-- Видео из того же каталога, что и страница -->
+        <video autoplay muted loop class="header-video">
+            <source src="video.mp4" type="video/mp4">
+            Ваш браузер не поддерживает видео.
+        </video>
+        <div class="video-overlay"></div>
+        
+        <nav class="nav">
+            <div class="nav-container">
+                <a href="#" class="logo">
+                    <i class="fas fa-feather-alt"></i>
+                    <span>Стихи в цифре</span>
+                </a>
+                
+                <!-- Десктопное меню -->
+                <ul class="nav-menu">
+                    <li><a href="#home">Главная</a></li>
+                    <li class="dropdown">
+                        <a href="#poets">Поэты <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#classic">Классики</a></li>
+                            <li><a href="#modern">Современники</a></li>
+                            <li><a href="#foreign">Зарубежные</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#collections">Сборники</a></li>
+                    <li><a href="#genres">Жанры</a></li>
+                    <li><a href="#about">О проекте</a></li>
+                    <li><button class="contact-btn" id="contactBtn">
+                        <i class="fas fa-envelope"></i> Связь с нами
+                    </button></li>
+                </ul>
+                
+                <!-- Бургер-меню для мобильных -->
+                <button class="burger-menu" id="burgerBtn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+        
+        <!-- Мобильное меню (скрытое) -->
+        <div class="mobile-menu" id="mobileMenu">
+            <button class="close-menu" id="closeMenuBtn">
+                <i class="fas fa-times"></i>
+            </button>
+            <ul>
+                <li><a href="#home">Главная</a></li>
+                <li><a href="#poets">Поэты</a></li>
+                <li><a href="#collections">Сборники</a></li>
+                <li><a href="#genres">Жанры</a></li>
+                <li><a href="#about">О проекте</a></li>
+                <li><button class="contact-btn-mobile" id="contactBtnMobile">
+                    <i class="fas fa-envelope"></i> Связь с нами
+                </button></li>
+            </ul>
+        </div>
+        
+        <div class="header-content">
+            <h1 class="header-title">Электронный поэтический сборник</h1>
+            <p class="header-subtitle">Где строки оживают, а рифмы обретают голос</p>
+            <a href="#collections" class="header-btn">Читать стихи</a>
+        </div>
+    </header>
+
+    <!-- Основной контент -->
+    <main class="main">
+        <!-- Слайдер с цитатами -->
+        <section class="slider-section">
+            <h2 class="section-title">Цитаты великих</h2>
+            <div class="slider-container">
+                <button class="slider-btn prev-btn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                
+                <div class="slider">
+                    <div class="slide active">
+                        <div class="slide-content">
+                            <p class="quote">"Поэзия — это музыка души..."</p>
+                            <p class="author">— Владимир Набоков</p>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div class="slide-content">
+                            <p class="quote">"Душа хотела б быть звездой..."</p>
+                            <p class="author">— Фёдор Тютчев</p>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div class="slide-content">
+                            <p class="quote">"Я помню чудное мгновенье..."</p>
+                            <p class="author">— Александр Пушкин</p>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div class="slide-content">
+                            <p class="quote">"Люблю грозу в начале мая..."</p>
+                            <p class="author">— Фёдор Тютчев</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="slider-btn next-btn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            
+            <div class="slider-dots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </section>
+
+        <!-- Коллекции стихов -->
+        <section class="collections-section" id="collections">
+            <h2 class="section-title">Поэтические сборники</h2>
+            <div class="collections-grid">
+                <div class="collection-card">
+                    <!-- Используем иконки вместо картинок -->
+                    <div class="collection-img">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3>Золотой век</h3>
+                    <p>Пушкин, Лермонтов, Тютчев</p>
+                    <a href="#" class="collection-link">Читать →</a>
+                </div>
+                
+                <div class="collection-card">
+                    <div class="collection-img">
+                        <i class="fas fa-moon"></i>
+                    </div>
+                    <h3>Серебряный век</h3>
+                    <p>Ахматова, Цветаева, Блок</p>
+                    <a href="#" class="collection-link">Читать →</a>
+                </div>
+                
+                <div class="collection-card">
+                    <div class="collection-img">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Современная поэзия</h3>
+                    <p>Новые голоса и ритмы</p>
+                    <a href="#" class="collection-link">Читать →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Форма для предложения стихов -->
+        <section class="form-section">
+            <h2 class="section-title">Предложите своё стихотворение</h2>
+            <p class="section-subtitle">Поделитесь своим творчеством с сообществом</p>
+            
+            <form class="poetry-form" id="poetryForm">
+                <div class="form-group">
+                    <input type="text" id="name" name="name" placeholder="Ваше имя" required>
+                </div>
+                
+                <div class="form-group">
+                    <input type="email" id="email" name="email" placeholder="Ваш email" required>
+                </div>
+                
+                <div class="form-group">
+                    <textarea id="poem" name="poem" placeholder="Ваше стихотворение..." rows="6" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <input type="text" id="title" name="title" placeholder="Название стихотворения">
+                </div>
+                
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="agree" name="agree" required>
+                    <label for="agree">Согласен с публикацией на сайте</label>
+                </div>
+                
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    <span>Отправить стихотворение</span>
+                    <div class="spinner hidden" id="spinner"></div>
+                </button>
+                
+                <div class="form-message" id="formMessage"></div>
+            </form>
+        </section>
+    </main>
+
+    <!-- Подвал -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <i class="fas fa-feather-alt"></i>
+                <span>Стихи в цифре</span>
+            </div>
+            
+            <div class="footer-links">
+                <a href="#about">О проекте</a>
+                <a href="#contact">Контакты</a>
+                <a href="#privacy">Политика конфиденциальности</a>
+            </div>
+            
+            <div class="footer-social">
+                <a href="#"><i class="fab fa-vk"></i></a>
+                <a href="#"><i class="fab fa-telegram"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+            
+            <p class="footer-copyright">
+                © 2024 Электронный поэтический сборник. Все права защищены.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Модальное окно для контактов (будет в React) -->
+    <div id="react-modal-root"></div>
+
+    <script src="script.js"></script>
+    
+    <!-- Интеграция с React -->
+    <script>
+        // Инициализация React-модалки при клике на кнопки
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactBtns = document.querySelectorAll('.contact-btn, .contact-btn-mobile');
+            
+            contactBtns.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    // Получаем позицию кнопки для анимации
+                    const rect = this.getBoundingClientRect();
+                    const position = {
+                        x: rect.left + rect.width / 2,
+                        y: rect.top + rect.height / 2
+                    };
+                    
+                    // Отправляем событие в React (если подключен)
+                    if (typeof window.dispatchEvent !== 'undefined') {
+                        window.dispatchEvent(new CustomEvent('openContactModal', {
+                            detail: { position }
+                        }));
+                    } else {
+                        // Запасной вариант - обычное модальное окно
+                        alert('React-приложение не подключено. Для полной функциональности подключите React.');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
