@@ -3,32 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Стихи в цифре | Электронный поэтический сборник</title>
+    <title>Электронный поэтический сборник | Стихи в цифре</title>
+    
+    <!-- Подключение шрифтов (из fonts.txt) -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome иконки -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS файлы -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/mobile.css" media="(max-width: 768px)">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Фавикон можно добавить по желанию -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📖</text></svg>">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="https://img.icons8.com/color/96/000000/poetry.png">
 </head>
 <body>
     <!-- Шапка с видео -->
     <header class="header">
-        <!-- Видео из того же каталога, что и страница -->
         <video autoplay muted loop class="header-video">
             <source src="video.mp4" type="video/mp4">
             Ваш браузер не поддерживает видео.
         </video>
+        
         <div class="video-overlay"></div>
         
+        <!-- Навигация -->
         <nav class="nav">
             <div class="nav-container">
+                <!-- Логотип -->
                 <a href="#" class="logo">
                     <i class="fas fa-feather-alt"></i>
-                    <span>Стихи в цифре</span>
+                    <span>Поэтический сборник</span>
                 </a>
                 
-                <!-- Десктопное меню -->
+                <!-- Основное меню (десктоп) -->
                 <ul class="nav-menu">
                     <li><a href="#home">Главная</a></li>
                     <li class="dropdown">
@@ -39,9 +48,9 @@
                             <li><a href="#foreign">Зарубежные</a></li>
                         </ul>
                     </li>
+                    <li><a href="#gallery">Галерея</a></li>
+                    <li><a href="#table">Хронология</a></li>
                     <li><a href="#collections">Сборники</a></li>
-                    <li><a href="#genres">Жанры</a></li>
-                    <li><a href="#about">О проекте</a></li>
                     <li><button class="contact-btn" id="contactBtn">
                         <i class="fas fa-envelope"></i> Связь с нами
                     </button></li>
@@ -56,7 +65,7 @@
             </div>
         </nav>
         
-        <!-- Мобильное меню (скрытое) -->
+        <!-- Мобильное меню -->
         <div class="mobile-menu" id="mobileMenu">
             <button class="close-menu" id="closeMenuBtn">
                 <i class="fas fa-times"></i>
@@ -64,131 +73,254 @@
             <ul>
                 <li><a href="#home">Главная</a></li>
                 <li><a href="#poets">Поэты</a></li>
+                <li><a href="#gallery">Галерея</a></li>
+                <li><a href="#table">Хронология</a></li>
                 <li><a href="#collections">Сборники</a></li>
-                <li><a href="#genres">Жанры</a></li>
-                <li><a href="#about">О проекте</a></li>
                 <li><button class="contact-btn-mobile" id="contactBtnMobile">
                     <i class="fas fa-envelope"></i> Связь с нами
                 </button></li>
             </ul>
         </div>
         
+        <!-- Заголовок -->
         <div class="header-content">
             <h1 class="header-title">Электронный поэтический сборник</h1>
-            <p class="header-subtitle">Где строки оживают, а рифмы обретают голос</p>
-            <a href="#collections" class="header-btn">Читать стихи</a>
+            <p class="header-subtitle">Исследуйте мир поэзии через цифровое пространство</p>
+            <a href="#gallery" class="header-btn">Начать путешествие</a>
         </div>
     </header>
 
     <!-- Основной контент -->
     <main class="main">
-        <!-- Слайдер с цитатами -->
-        <section class="slider-section">
-            <h2 class="section-title">Цитаты великих</h2>
-            <div class="slider-container">
-                <button class="slider-btn prev-btn">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                
-                <div class="slider">
-                    <div class="slide active">
-                        <div class="slide-content">
-                            <p class="quote">"Поэзия — это музыка души..."</p>
-                            <p class="author">— Владимир Набоков</p>
+        <!-- Секция: Галерея слайдов -->
+        <section class="gallery-section" id="gallery">
+            <h2 class="section-title">Галерея поэзии</h2>
+            <p class="section-subtitle">Визуальное путешествие по миру стихов</p>
+            
+            <div class="gallery-container">
+                <div class="gallery-slider">
+                    <div class="gallery-slide active">
+                        <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&q=80" 
+                             alt="Книга поэзии" class="slide-img">
+                        <div class="slide-caption">
+                            <h3>Золотой век</h3>
+                            <p>Пушкин, Лермонтов, Тютчев</p>
                         </div>
                     </div>
-                    <div class="slide">
-                        <div class="slide-content">
-                            <p class="quote">"Душа хотела б быть звездой..."</p>
-                            <p class="author">— Фёдор Тютчев</p>
+                    
+                    <div class="gallery-slide">
+                        <img src="https://images.unsplash.com/photo-1516979187457-637abb4f9353?w=800&q=80" 
+                             alt="Перо и чернила" class="slide-img">
+                        <div class="slide-caption">
+                            <h3>Серебряный век</h3>
+                            <p>Ахматова, Цветаева, Блок</p>
                         </div>
                     </div>
-                    <div class="slide">
-                        <div class="slide-content">
-                            <p class="quote">"Я помню чудное мгновенье..."</p>
-                            <p class="author">— Александр Пушкин</p>
+                    
+                    <div class="gallery-slide">
+                        <img src="https://images.unsplash.com/photo-1544716278-e513176f20b5?w=800&q=80" 
+                             alt="Библиотека" class="slide-img">
+                        <div class="slide-caption">
+                            <h3>Библиотека поэта</h3>
+                            <p>Коллекции редких изданий</p>
                         </div>
                     </div>
-                    <div class="slide">
-                        <div class="slide-content">
-                            <p class="quote">"Люблю грозу в начале мая..."</p>
-                            <p class="author">— Фёдор Тютчев</p>
+                    
+                    <div class="gallery-slide">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80" 
+                             alt="Поэт" class="slide-img">
+                        <div class="slide-caption">
+                            <h3>Современная поэзия</h3>
+                            <p>Новые голоса и формы</p>
                         </div>
                     </div>
                 </div>
                 
-                <button class="slider-btn next-btn">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-            </div>
-            
-            <div class="slider-dots">
-                <span class="dot active"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
+                <div class="gallery-controls">
+                    <button class="gallery-btn prev-btn">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="gallery-dots">
+                        <span class="gallery-dot active"></span>
+                        <span class="gallery-dot"></span>
+                        <span class="gallery-dot"></span>
+                        <span class="gallery-dot"></span>
+                    </div>
+                    <button class="gallery-btn next-btn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
             </div>
         </section>
 
-        <!-- Коллекции стихов -->
+        <!-- Секция: Таблица поэтов -->
+        <section class="table-section" id="table">
+            <h2 class="section-title">Хронология русских поэтов</h2>
+            <p class="section-subtitle">Основные периоды и представители</p>
+            
+            <div class="table-container">
+                <table class="poets-table">
+                    <thead>
+                        <tr>
+                            <th>Поэт</th>
+                            <th>Годы жизни</th>
+                            <th>Период</th>
+                            <th>Направление</th>
+                            <th>Известные произведения</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Александр Пушкин</strong></td>
+                            <td>1799-1837</td>
+                            <td>Золотой век</td>
+                            <td>Романтизм, реализм</td>
+                            <td>"Евгений Онегин", "Руслан и Людмила"</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Михаил Лермонтов</strong></td>
+                            <td>1814-1841</td>
+                            <td>Золотой век</td>
+                            <td>Романтизм</td>
+                            <td>"Герой нашего времени", "Мцыри"</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Анна Ахматова</strong></td>
+                            <td>1889-1966</td>
+                            <td>Серебряный век</td>
+                            <td>Акмеизм</td>
+                            <td>"Реквием", "Вечер"</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Владимир Маяковский</strong></td>
+                            <td>1893-1930</td>
+                            <td>Серебряный век</td>
+                            <td>Футуризм</td>
+                            <td>"Облако в штанах", "Клоп"</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Сергей Есенин</strong></td>
+                            <td>1895-1925</td>
+                            <td>Серебряный век</td>
+                            <td>Имажинизм</td>
+                            <td>"Чёрный человек", "Анна Снегина"</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Марина Цветаева</strong></td>
+                            <td>1892-1941</td>
+                            <td>Серебряный век</td>
+                            <td>Символизм</td>
+                            <td>"Лебединый стан", "Поэма конца"</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Иосиф Бродский</strong></td>
+                            <td>1940-1996</td>
+                            <td>Современный</td>
+                            <td>Модернизм</td>
+                            <td>"Часть речи", "Урания"</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Секция: Поэтические сборники -->
         <section class="collections-section" id="collections">
             <h2 class="section-title">Поэтические сборники</h2>
+            <p class="section-subtitle">Коллекции для чтения и изучения</p>
+            
             <div class="collections-grid">
                 <div class="collection-card">
-                    <!-- Используем иконки вместо картинок -->
-                    <div class="collection-img">
-                        <i class="fas fa-book-open"></i>
+                    <div class="collection-icon">
+                        <i class="fas fa-crown"></i>
                     </div>
                     <h3>Золотой век</h3>
-                    <p>Пушкин, Лермонтов, Тютчев</p>
-                    <a href="#" class="collection-link">Читать →</a>
+                    <p>Пушкин, Лермонтов, Жуковский, Баратынский</p>
+                    <ul class="collection-list">
+                        <li>Евгений Онегин</li>
+                        <li>Герой нашего времени</li>
+                        <li>Светлана</li>
+                    </ul>
+                    <a href="#" class="collection-link">Изучить →</a>
                 </div>
                 
                 <div class="collection-card">
-                    <div class="collection-img">
+                    <div class="collection-icon">
                         <i class="fas fa-moon"></i>
                     </div>
                     <h3>Серебряный век</h3>
-                    <p>Ахматова, Цветаева, Блок</p>
-                    <a href="#" class="collection-link">Читать →</a>
+                    <p>Ахматова, Цветаева, Блок, Гумилёв</p>
+                    <ul class="collection-list">
+                        <li>Реквием</li>
+                        <li>Двенадцать</li>
+                        <li>Вечер</li>
+                    </ul>
+                    <a href="#" class="collection-link">Изучить →</a>
                 </div>
                 
                 <div class="collection-card">
-                    <div class="collection-img">
+                    <div class="collection-icon">
                         <i class="fas fa-star"></i>
                     </div>
                     <h3>Современная поэзия</h3>
-                    <p>Новые голоса и ритмы</p>
-                    <a href="#" class="collection-link">Читать →</a>
+                    <p>Бродский, Пригов, Рубинштейн, Гандлевский</p>
+                    <ul class="collection-list">
+                        <li>Часть речи</li>
+                        <li>Стихи о Родине</li>
+                        <li>Регулярное письмо</li>
+                    </ul>
+                    <a href="#" class="collection-link">Изучить →</a>
                 </div>
             </div>
         </section>
 
-        <!-- Форма для предложения стихов -->
-        <section class="form-section">
+        <!-- Секция: Форма для предложений -->
+        <section class="form-section" id="contact">
             <h2 class="section-title">Предложите своё стихотворение</h2>
-            <p class="section-subtitle">Поделитесь своим творчеством с сообществом</p>
+            <p class="section-subtitle">Поделитесь творчеством с сообществом</p>
             
             <form class="poetry-form" id="poetryForm">
-                <div class="form-group">
-                    <input type="text" id="name" name="name" placeholder="Ваше имя" required>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Ваше имя *</label>
+                        <input type="text" id="name" name="name" placeholder="Иван Иванов" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Ваш email *</label>
+                        <input type="email" id="email" name="email" placeholder="ivan@example.com" required>
+                    </div>
                 </div>
                 
                 <div class="form-group">
-                    <input type="email" id="email" name="email" placeholder="Ваш email" required>
+                    <label for="title">Название стихотворения</label>
+                    <input type="text" id="title" name="title" placeholder="Белая берёза...">
                 </div>
                 
                 <div class="form-group">
-                    <textarea id="poem" name="poem" placeholder="Ваше стихотворение..." rows="6" required></textarea>
+                    <label for="poem">Текст стихотворения *</label>
+                    <textarea id="poem" name="poem" placeholder="Введите текст вашего стихотворения..." rows="6" required></textarea>
                 </div>
                 
                 <div class="form-group">
-                    <input type="text" id="title" name="title" placeholder="Название стихотворения">
+                    <label for="period">Период поэзии</label>
+                    <select id="period" name="period">
+                        <option value="">Выберите период</option>
+                        <option value="golden">Золотой век</option>
+                        <option value="silver">Серебряный век</option>
+                        <option value="modern">Современная поэзия</option>
+                        <option value="experimental">Экспериментальная</option>
+                    </select>
                 </div>
                 
                 <div class="form-group checkbox-group">
                     <input type="checkbox" id="agree" name="agree" required>
-                    <label for="agree">Согласен с публикацией на сайте</label>
+                    <label for="agree">Я согласен(а) с публикацией стихотворения на сайте</label>
+                </div>
+                
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="newsletter" name="newsletter">
+                    <label for="newsletter">Подписаться на новости о поэзии</label>
                 </div>
                 
                 <button type="submit" class="submit-btn" id="submitBtn">
@@ -203,62 +335,51 @@
 
     <!-- Подвал -->
     <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-logo">
-                <i class="fas fa-feather-alt"></i>
-                <span>Стихи в цифре</span>
+        <div class="footer-container">
+            <div class="footer-section">
+                <div class="footer-logo">
+                    <i class="fas fa-feather-alt"></i>
+                    <h3>Электронный поэтический сборник</h3>
+                </div>
+                <p>Проект посвящён сохранению и популяризации поэтического наследия.</p>
             </div>
             
-            <div class="footer-links">
-                <a href="#about">О проекте</a>
-                <a href="#contact">Контакты</a>
-                <a href="#privacy">Политика конфиденциальности</a>
+            <div class="footer-section">
+                <h4>Разделы</h4>
+                <ul class="footer-links">
+                    <li><a href="#home">Главная</a></li>
+                    <li><a href="#gallery">Галерея</a></li>
+                    <li><a href="#table">Хронология</a></li>
+                    <li><a href="#collections">Сборники</a></li>
+                </ul>
             </div>
             
-            <div class="footer-social">
-                <a href="#"><i class="fab fa-vk"></i></a>
-                <a href="#"><i class="fab fa-telegram"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
+            <div class="footer-section">
+                <h4>Контакты</h4>
+                <ul class="footer-links">
+                    <li><i class="fas fa-envelope"></i> poetry@example.com</li>
+                    <li><i class="fas fa-phone"></i> +7 (999) 123-45-67</li>
+                </ul>
             </div>
             
-            <p class="footer-copyright">
-                © 2024 Электронный поэтический сборник. Все права защищены.
-            </p>
+            <div class="footer-section">
+                <h4>Социальные сети</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-vk"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 Электронный поэтический сборник. Все права защищены.</p>
+            <p>Образовательный проект по веб-разработке</p>
         </div>
     </footer>
 
-    <!-- Модальное окно для контактов (будет в React) -->
-    <div id="react-modal-root"></div>
-
-    <script src="js/script.js"></script>
-    
-    <!-- Интеграция с React -->
-    <script>
-        // Инициализация React-модалки при клике на кнопки
-        document.addEventListener('DOMContentLoaded', function() {
-            const contactBtns = document.querySelectorAll('.contact-btn, .contact-btn-mobile');
-            
-            contactBtns.forEach(btn => {
-                btn.addEventListener('click', function(e) {
-                    // Получаем позицию кнопки для анимации
-                    const rect = this.getBoundingClientRect();
-                    const position = {
-                        x: rect.left + rect.width / 2,
-                        y: rect.top + rect.height / 2
-                    };
-                    
-                    // Отправляем событие в React (если подключен)
-                    if (typeof window.dispatchEvent !== 'undefined') {
-                        window.dispatchEvent(new CustomEvent('openContactModal', {
-                            detail: { position }
-                        }));
-                    } else {
-                        // Запасной вариант - обычное модальное окно
-                        alert('React-приложение не подключено. Для полной функциональности подключите React.');
-                    }
-                });
-            });
-        });
-    </script>
+    <!-- Подключение JavaScript -->
+    <script src="js/main.js"></script>
 </body>
 </html>
