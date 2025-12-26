@@ -1,134 +1,142 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Элементы DOM
+    // ===== ПЕРЕМЕННЫЕ И ЭЛЕМЕНТЫ =====
     const burgerBtn = document.getElementById('burgerBtn');
     const closeMenuBtn = document.getElementById('closeMenuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
     const dropdowns = document.querySelectorAll('.dropdown');
-    const slider = document.querySelector('.slider');
-    const slides = document.querySelectorAll('.slide');
-    const dots = document.querySelectorAll('.dot');
-    const prevBtn = document.querySelector('.prev-btn');
-    const nextBtn = document.querySelector('.next-btn');
+    const contactBtn = document.getElementById('contactBtn');
+    const contactBtnMobile = document.getElementById('contactBtnMobile');
     const poetryForm = document.getElementById('poetryForm');
     const submitBtn = document.getElementById('submitBtn');
     const spinner = document.getElementById('spinner');
     const formMessage = document.getElementById('formMessage');
-    const contactBtn = document.getElementById('contactBtn');
-    const contactBtnMobile = document.getElementById('contactBtnMobile');
-
-    // Мобильное меню
+    
+    // Галерея элементы
+    const gallerySlides = document.querySelectorAll('.gallery-slide');
+    const galleryDots = document.querySelectorAll('.gallery-dot');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    
+    // ===== МОБИЛЬНОЕ МЕНЮ =====
     burgerBtn.addEventListener('click', function() {
         mobileMenu.classList.add('active');
         document.body.style.overflow = 'hidden';
+        // Анимация бургер-меню
+        this.classList.toggle('active');
     });
-
-    closeMenuBtn.addEventListener('click', function() {
+    
+    closeMenuBtn.addEventListener('click', closeMobileMenu);
+    
+    // Закрытие меню при клике на ссылку
+    mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', closeMobileMenu);
+    });
+    
+    function closeMobileMenu() {
         mobileMenu.classList.remove('active');
         document.body.style.overflow = 'auto';
-    });
-
-    // Закрытие мобильного меню при клике на ссылку
-    mobileMenu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', function() {
-            mobileMenu.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        });
-    });
-
-    // Выпадающие меню для десктопа
+        burgerBtn.classList.remove('active');
+    }
+    
+    // ===== ВЫПАДАЮЩЕЕ МЕНЮ (ДЕСКТОП) =====
     dropdowns.forEach(dropdown => {
         dropdown.addEventListener('mouseenter', function() {
             if (window.innerWidth > 768) {
-                this.querySelector('.dropdown-menu').style.opacity = '1';
-                this.querySelector('.dropdown-menu').style.visibility = 'visible';
-                this.querySelector('.dropdown-menu').style.transform = 'translateY(0)';
+                const menu = this.querySelector('.dropdown-menu');
+                menu.style.opacity = '1';
+                menu.style.visibility = 'visible';
+                menu.style.transform = 'translateY(0)';
             }
         });
-
+        
         dropdown.addEventListener('mouseleave', function() {
             if (window.innerWidth > 768) {
-                this.querySelector('.dropdown-menu').style.opacity = '0';
-                this.querySelector('.dropdown-menu').style.visibility = 'hidden';
-                this.querySelector('.dropdown-menu').style.transform = 'translateY(-10px)';
+                const menu = this.querySelector('.dropdown-menu');
+                menu.style.opacity = '0';
+                menu.style.visibility = 'hidden';
+                menu.style.transform = 'translateY(-10px)';
             }
         });
     });
-
-    // Слайдер
+    
+    // ===== ГАЛЕРЕЯ СЛАЙДОВ =====
     let currentSlide = 0;
-    const totalSlides = slides.length;
-
-    function showSlide(index) {
+    const totalSlides = gallerySlides.length;
+    
+    function showGallerySlide(index) {
         // Скрыть все слайды
-        slides.forEach(slide => {
-            slide.classList.remove('active');
+        gallerySlides.forEach(slide => {
             slide.style.display = 'none';
+            slide.classList.remove('active');
         });
         
-        // Убрать активный класс со всех точек
-        dots.forEach(dot => dot.classList.remove('active'));
+        // Скрыть все точки
+        galleryDots.forEach(dot => dot.classList.remove('active'));
         
         // Показать выбранный слайд
-        slides[index].style.display = 'block';
+        gallerySlides[index].style.display = 'block';
         setTimeout(() => {
-            slides[index].classList.add('active');
+            gallerySlides[index].classList.add('active');
         }, 10);
         
-        // Активировать соответствующую точку
-        dots[index].classList.add('active');
+        // Активировать точку
+        galleryDots[index].classList.add('active');
         
         currentSlide = index;
     }
-
-    function nextSlide() {
+    
+    function nextGallerySlide() {
         let newIndex = currentSlide + 1;
         if (newIndex >= totalSlides) newIndex = 0;
-        showSlide(newIndex);
+        showGallerySlide(newIndex);
     }
-
-    function prevSlide() {
+    
+    function prevGallerySlide() {
         let newIndex = currentSlide - 1;
         if (newIndex < 0) newIndex = totalSlides - 1;
-        showSlide(newIndex);
+        showGallerySlide(newIndex);
     }
-
-    // Автопрокрутка слайдера
-    let slideInterval = setInterval(nextSlide, 5000);
-
-    function resetInterval() {
-        clearInterval(slideInterval);
-        slideInterval = setInterval(nextSlide, 5000);
+    
+    // Автопрокрутка галереи
+    let galleryInterval = setInterval(nextGallerySlide, 5000);
+    
+    function resetGalleryInterval() {
+        clearInterval(galleryInterval);
+        galleryInterval = setInterval(nextGallerySlide, 5000);
     }
-
-    // Кнопки слайдера
-    nextBtn.addEventListener('click', function() {
-        nextSlide();
-        resetInterval();
-    });
-
+    
+    // События галереи
     prevBtn.addEventListener('click', function() {
-        prevSlide();
-        resetInterval();
+        prevGallerySlide();
+        resetGalleryInterval();
     });
-
-    // Точки навигации слайдера
-    dots.forEach((dot, index) => {
+    
+    nextBtn.addEventListener('click', function() {
+        nextGallerySlide();
+        resetGalleryInterval();
+    });
+    
+    // Точки навигации
+    galleryDots.forEach((dot, index) => {
         dot.addEventListener('click', function() {
-            showSlide(index);
-            resetInterval();
+            showGallerySlide(index);
+            resetGalleryInterval();
         });
     });
-
-    // Пауза слайдера при наведении
-    slider.addEventListener('mouseenter', function() {
-        clearInterval(slideInterval);
-    });
-
-    slider.addEventListener('mouseleave', function() {
-        resetInterval();
-    });
-
-    // Отправка формы (используем Formspree)
+    
+    // Остановка автопрокрутки при наведении
+    const galleryContainer = document.querySelector('.gallery-container');
+    if (galleryContainer) {
+        galleryContainer.addEventListener('mouseenter', () => {
+            clearInterval(galleryInterval);
+        });
+        
+        galleryContainer.addEventListener('mouseleave', () => {
+            resetGalleryInterval();
+        });
+    }
+    
+    // ===== ОТПРАВКА ФОРМЫ =====
     poetryForm.addEventListener('submit', async function(e) {
         e.preventDefault();
         
@@ -144,14 +152,21 @@ document.addEventListener('DOMContentLoaded', function() {
         const formData = {
             name: document.getElementById('name').value,
             email: document.getElementById('email').value,
-            poem: document.getElementById('poem').value,
             title: document.getElementById('title').value,
-            agree: document.getElementById('agree').checked
+            poem: document.getElementById('poem').value,
+            period: document.getElementById('period').value,
+            agree: document.getElementById('agree').checked,
+            newsletter: document.getElementById('newsletter').checked,
+            timestamp: new Date().toISOString()
         };
         
         try {
-            // Отправка данных на Formspree
-            const response = await fetch('https://formspree.io/f/ваш_ключ', {
+            // Сохраняем в localStorage
+            localStorage.setItem('lastPoemTitle', formData.title);
+            localStorage.setItem('lastPoemAuthor', formData.name);
+            
+            // Отправка на Formspree (замените YOUR_FORM_ID на ваш)
+            const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -161,15 +176,23 @@ document.addEventListener('DOMContentLoaded', function() {
             
             if (response.ok) {
                 // Успешная отправка
-                formMessage.textContent = 'Ваше стихотворение успешно отправлено! Спасибо за участие.';
+                formMessage.textContent = '✅ Ваше стихотворение успешно отправлено! Спасибо за участие в проекте.';
                 formMessage.classList.add('success');
                 poetryForm.reset();
+                
+                // История отправки
+                const submissionHistory = JSON.parse(localStorage.getItem('submissionHistory') || '[]');
+                submissionHistory.push({
+                    title: formData.title,
+                    date: new Date().toLocaleString()
+                });
+                localStorage.setItem('submissionHistory', JSON.stringify(submissionHistory));
             } else {
                 throw new Error('Ошибка отправки формы');
             }
         } catch (error) {
             // Ошибка отправки
-            formMessage.textContent = 'Произошла ошибка при отправке. Пожалуйста, попробуйте ещё раз.';
+            formMessage.textContent = '❌ Произошла ошибка при отправке. Пожалуйста, проверьте подключение к интернету и попробуйте ещё раз.';
             formMessage.classList.add('error');
             console.error('Form submission error:', error);
         } finally {
@@ -177,86 +200,93 @@ document.addEventListener('DOMContentLoaded', function() {
             submitBtn.disabled = false;
             spinner.classList.add('hidden');
             
-            // Автоматически скрыть сообщение через 5 секунд
+            // Автоматически скрыть сообщение через 8 секунд
             setTimeout(() => {
                 formMessage.textContent = '';
                 formMessage.className = 'form-message';
-            }, 5000);
+            }, 8000);
         }
     });
-
-    // Кнопки "Связь с нами" - открывают модалку
-    function showContactModal() {
-        // Если подключен React - отправляем событие
-        if (typeof window.dispatchEvent !== 'undefined') {
-            const contactBtns = document.querySelectorAll('.contact-btn, .contact-btn-mobile');
-            contactBtns.forEach(btn => {
-                const rect = btn.getBoundingClientRect();
-                const position = {
-                    x: rect.left + rect.width / 2,
-                    y: rect.top + rect.height / 2
-                };
-                
-                window.dispatchEvent(new CustomEvent('openContactModal', {
-                    detail: { position }
-                }));
-            });
-        } else {
-            // Простая альтернатива без React
-            const modal = document.createElement('div');
-            modal.style.cssText = `
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0,0,0,0.8);
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                z-index: 9999;
-                animation: fadeIn 0.3s ease;
-            `;
-            
-            modal.innerHTML = `
-                <div style="
-                    background: #3e2723;
-                    padding: 2rem;
-                    border-radius: 10px;
-                    max-width: 500px;
-                    width: 90%;
-                    border: 1px solid #d7ccc8;
-                ">
-                    <h2 style="color: #d7ccc8; margin-bottom: 1rem;">Связь с нами</h2>
-                    <p style="color: #bdbdbd; margin-bottom: 1.5rem;">
-                        Для связи с нами используйте форму ниже на странице 
-                        или напишите на email: poetry@example.com
-                    </p>
-                    <button onclick="this.parentElement.parentElement.remove()" 
-                            style="
-                                background: #d7ccc8;
-                                color: #2c1810;
-                                border: none;
-                                padding: 0.5rem 1rem;
-                                border-radius: 5px;
-                                cursor: pointer;
-                            ">
-                        Закрыть
-                    </button>
-                </div>
-            `;
-            
-            document.body.appendChild(modal);
-        }
+    
+    // ===== КНОПКИ "СВЯЗЬ С НАМИ" =====
+    function showContactInfo() {
+        formMessage.textContent = '📧 Для связи с нами используйте форму выше или напишите на poetry@example.com';
+        formMessage.classList.add('success');
+        
+        setTimeout(() => {
+            formMessage.textContent = '';
+            formMessage.className = 'form-message';
+        }, 5000);
     }
-
-    contactBtn.addEventListener('click', showContactModal);
+    
+    contactBtn.addEventListener('click', showContactInfo);
     contactBtnMobile.addEventListener('click', function() {
-        showContactModal();
-        mobileMenu.classList.remove('active');
-        document.body.style.overflow = 'auto';
+        showContactInfo();
+        closeMobileMenu();
     });
-
-    // Инициализация первого слайда
-    showSlide(0);
+    
+    // ===== ПЛАВНАЯ ПРОКРУТКА ДЛЯ ЯКОРЕЙ =====
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+                
+                // Закрыть мобильное меню если открыто
+                if (mobileMenu.classList.contains('active')) {
+                    closeMobileMenu();
+                }
+            }
+        });
+    });
+    
+    // ===== АНИМАЦИЯ ПРИ ПРОКРУТКЕ =====
+    function checkScroll() {
+        const elements = document.querySelectorAll('.collection-card, .table-section, .form-section');
+        
+        elements.forEach(element => {
+            const elementTop = element.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+            
+            if (elementTop < windowHeight - 100) {
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0)';
+            }
+        });
+    }
+    
+    // Начальные стили для анимации
+    document.querySelectorAll('.collection-card, .table-section, .form-section').forEach(element => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(30px)';
+        element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    });
+    
+    window.addEventListener('scroll', checkScroll);
+    window.addEventListener('load', checkScroll);
+    
+    // ===== ИНИЦИАЛИЗАЦИЯ =====
+    showGallerySlide(0);
+    checkScroll();
+    
+    // Загрузка сохранённых данных
+    const savedTitle = localStorage.getItem('lastPoemTitle');
+    const savedAuthor = localStorage.getItem('lastPoemAuthor');
+    
+    if (savedTitle) {
+        document.getElementById('title').value = savedTitle;
+    }
+    if (savedAuthor) {
+        document.getElementById('name').value = savedAuthor;
+    }
+    
+    console.log('Поэтический сайт успешно загружен! 🎭');
 });
