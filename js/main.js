@@ -165,7 +165,6 @@ document.addEventListener('DOMContentLoaded', function() {
             localStorage.setItem('lastPoemTitle', formData.title);
             localStorage.setItem('lastPoemAuthor', formData.name);
             
-            // Отправка на Formspree (замените YOUR_FORM_ID на ваш)
             const response = await fetch('https://formspree.io/f/mwvkkpkk', {
                 method: 'POST',
                 headers: {
